@@ -1,101 +1,100 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import { useState } from "react";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+export default function Page () {
+
+  const [dist, setDist] = useState<number>(0);
+  const [cons, setCons] = useState<number>(0);
+  const [prec, setPrec] = useState<number>(0);
+  const [resultado, setResultado] = useState<number>(0);
+  const [showResult, setShowResult] = useState<boolean>(false);
+
+  const handleCalc = () => {
+    if (dist > 0 && cons > 0 && prec > 0) {
+      const calc = (dist / cons) * prec;
+      setShowResult(true);
+      setResultado(calc);
+    } 
+  }
+  
+  const handleReset = () => {
+    setShowResult(false);
+    setResultado(0);
+    setDist(0);
+    setCons(0);
+    setPrec(0);
+    
+  }
+
+
+
+  return(
+      <div className="container mx-auto  mt-4 flex justify-center items-center">
+        <div className="flex flex-col   max-w-4xl bg-[#222] h-80 p-4 rounded-md">
+          <h1 className="text-white mt-4">Cálculo do Combustível</h1>
+
+
+          <div className="flex justify-between  mt-5">
+
+                <div>
+                  <label htmlFor="dist" className="text-white text-sm">Distância percorrida</label>
+                  <input type="text" id="dist" className="rounded-l p-1" placeholder="0" value={dist} 
+                  onChange={e => {const value = e.target.value;
+                    if (!isNaN(Number(value)) && value.trim() !== "") {setDist(Number(value));}}}/>
+                  <span className="text-white p-2 bg-[#444] rounded-r">km</span>
+                </div>
+
+                <div>
+                  <label htmlFor="cons" className="text-white text-sm">Consumo médio do veículo</label>
+                  <input type="text" id="cons" className="rounded-l p-1" placeholder="0"  value={cons} 
+                    onChange={e => {const value = e.target.value;
+                    if (!isNaN(Number(value)) && value.trim() !== "") {setCons(Number(value));}}}/>
+                  <span className="text-white p-2 bg-[#444] rounded-r">km / ℓ</span>                
+                </div>
+
+                <div>
+                    <label htmlFor="prec" className="text-white text-sm">Preço por litro</label>
+                    <input type="text" id="prec" className="rounded-l p-1" placeholder="0"  value={prec} 
+                    onChange={e => {const value = e.target.value;
+                      if (!isNaN(Number(value)) && value.trim() !== "") {setPrec(Number(value));}}}/>
+                    <span className="text-white p-2 bg-[#444] rounded-r">por ℓ</span> 
+                </div>
+              
+
+               
+
+          </div>
+
+          {
+              !showResult &&
+            <div className="flex justify-end mt-8">
+              <div className="text-white bg-[#333] hover:bg-[#111] px-4 py-2 rounded-md cursor-pointer" onClick={handleCalc}>
+                Calcular
+              </div>
+            </div>
+          }
+
+          {
+            showResult &&
+            <div className="flex justify-between">
+              <div className="text-white bg-black p-4 rounded-md mt-8">{resultado}</div>
+
+              <div className="text-white bg-[#333] hover:bg-[#111] px-4 py-2 rounded-md cursor-pointer mt-8" onClick={handleReset}>
+                Limpar
+              </div>
+
+            </div>
+
+          }
+
+        
+
+       
+   
+          
+        </div>  
+
+      </div>
   );
 }
