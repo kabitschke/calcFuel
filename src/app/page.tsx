@@ -44,108 +44,114 @@ export default function Page() {
   };
 
   return (
-    <div className="container mx-auto  mt-4 flex justify-center items-center">
-      <div className="flex flex-col   max-w-4xl bg-[#222] h-auto p-4 rounded-md">
-        <h1 className="text-white mt-4">Cálculo do Combustível</h1>
-
-        <div className="flex justify-between  mt-5">
-          <div>
-            <label htmlFor="dist" className="text-white text-sm">
-              Distância percorrida
-            </label>
+    <div className="container mx-auto mt-4 flex justify-center items-center text-gray-950">
+    <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md">
+      <h1 className=" mt-4 text-xl font-semibold text-gray-800">Calculadora de combustível</h1>
+  
+      <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
+        <div className="w-full lg:w-auto">
+          <label htmlFor="dist" className=" text-sm block">
+            Distância percorrida
+          </label>
+          <div className="flex">
             <input
               type="text"
               id="dist"
-              className="rounded-l p-1 text-black"
+              className="rounded-l p-1  w-full lg:w-auto bg-gray-100 border border-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-gray-600"
               placeholder="0"
               value={dist}
               onChange={(e) => handleInput(e.target.value, setDist)}
               disabled={showResult}
             />
-            <span className="text-white p-2 bg-[#444] rounded-r">km</span>
+            <span className=" p-2 bg-gray-500 rounded-r flex-shrink-0">km</span>
           </div>
-
-          <div>
-            <label htmlFor="cons" className="text-white text-sm">
-              Consumo médio do veículo
-            </label>
+        </div>
+  
+        <div className="w-full lg:w-auto">
+          <label htmlFor="cons" className=" text-sm block">
+            Consumo médio do veículo
+          </label>
+          <div className="flex">
             <input
               type="text"
               id="cons"
-              className="rounded-l p-1 text-black"
+              className="rounded-l p-1  w-full lg:w-auto bg-gray-100 border border-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-gray-600"
               placeholder="0"
               value={cons}
               onChange={(e) => handleInput(e.target.value, setCons)}
               disabled={showResult}
             />
-            <span className="text-white p-2 bg-[#444] rounded-r">km / ℓ</span>
+            <span className=" p-2 bg-gray-500 rounded-r flex-shrink-0">km / ℓ</span>
           </div>
-
-          <div>
-            <label htmlFor="prec" className="text-white text-sm">
-              Preço por litro
-            </label>
+        </div>
+  
+        <div className="w-full lg:w-auto">
+          <label htmlFor="prec" className=" text-sm block">
+            Preço por litro
+          </label>
+          <div className="flex">
             <input
               type="text"
               id="prec"
-              className="rounded-l p-1 text-black"
+              className="rounded-l p-1  w-full lg:w-auto bg-gray-100 border border-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-gray-600"
               placeholder="0,00"
               value={prec}
               onChange={(e) => handleInput(e.target.value, setPrec)}
               disabled={showResult}
             />
-            <span className="text-white p-2 bg-[#444] rounded-r">por ℓ</span>
+            <span className=" p-2 bg-gray-500 rounded-r flex-shrink-0">por ℓ</span>
           </div>
         </div>
-
-        {!showResult && (
-          <div className="flex justify-end mt-8">
-            <div
-              className="text-white bg-[#333] hover:bg-[#111] px-4 py-2 rounded-md cursor-pointer"
-              onClick={handleCalc}
-            >
-              Calcular
-            </div>
-          </div>
-        )}
-
-        {showResult && (
-          <div className="flex flex-col">
-            <h1 className="mt-8">Resultado:</h1>
-            <div className="text-white  mt-8">
-              <div>
-                <table className="min-w-full bg-white ">
-                  <thead>
-                    <tr className="bg-gray-200 text-gray-600">
-                      <th className="py-2 px-4 border-b">KM</th>
-                      <th className="py-2 px-4 border-b">Consumo (ℓ)</th>
-                      <th className="py-2 px-4 border-b">Preço</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-black" >
-                    <tr className="hover:bg-gray-100 text-center border-2 border-gray-300" >
-                      <td className="py-2 px-4 border-2 border-gray-300">{dist} km</td>
-                      <td className="py-2 px-4 border-2 border-gray-300">{consumo} ℓ</td>
-                      <td className="py-2 px-4 border-2 border-gray-300">{`R$ ${resultado}`}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-
-            <div className="flex justify-end">
-              <div
-                className="text-white bg-[#333] hover:bg-[#111] px-4 py-2 rounded-md cursor-pointer mt-8"
-                onClick={handleReset}
-              >
-                Fazer novo cálculo
-              </div>
-            </div>
-
-          </div>
-        )}
       </div>
+  
+      {!showResult && (
+        <div className="flex justify-end mt-8">
+          <div
+            className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
+            onClick={handleCalc}
+          >
+            Calcular
+          </div>
+        </div>
+      )}
+  
+      {showResult && (
+        <div className="flex flex-col">
+          <h1 className="mt-8 text-xl font-semibold text-gray-800">Resultado:</h1>
+          <div className=" mt-8">
+            <div>
+              <table className="min-w-full">
+                <thead>
+                  <tr className="bg-gray-200 text-gray-600">
+                    <th className="py-2 px-4 border-b">KM</th>
+                    <th className="py-2 px-4 border-b">Consumo (ℓ)</th>
+                    <th className="py-2 px-4 border-b">Preço</th>
+                  </tr>
+                </thead>
+                <tbody className="">
+                  <tr className="bg-gray-100 text-center border-2 border-gray-300">
+                    <td className="py-2 px-4 border-2 border-gray-300">{dist} km</td>
+                    <td className="py-2 px-4 border-2 border-gray-300">{consumo} ℓ</td>
+                    <td className="py-2 px-4 border-2 border-gray-300">{`R$ ${resultado}`}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+          <div className="flex justify-end">
+            <div
+              className=" bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded-md cursor-pointer mt-8"
+              onClick={handleReset}
+            >
+              Fazer novo cálculo
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+  </div>
+  
+
   );
 }
