@@ -14,8 +14,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Calculo combustivel",
-  description: "calculo de combustivel",
+  title: "Cálculo de combustível",
+  description: "Planeje sua viagem com nossa calculadora de combustível. Descubra quanto vai gastar e aprenda dicas eficazes para economizar combustível e otimizar seus gastos!",
+  keywords: "calculadora de combustivel, álcool, gasolina, economizar combustível",
 };
 
 export default function RootLayout({
@@ -33,3 +34,4 @@ export default function RootLayout({
     </html>
   );
 }
+
