@@ -16,7 +16,7 @@ export default function Page() {
 
   const [alcool, setAlcool] = useState("");
   const [gasolina, setGasolina] = useState("");
-  const [resultFuel, setResultFuel] = useState("");
+  const [resultFuel, setResultFuel] = useState<boolean | null>(null);
   const [active, setActive] = useState(false);
 
   const handleCalc = () => {
@@ -27,6 +27,8 @@ export default function Page() {
     if (distNum > 0 && consNum > 0 && precNum > 0) {
       const calc = (distNum / consNum) * precNum;
       const consumo = distNum / consNum;
+
+
       const resultadoFormatado = calc.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       const resultadoConsumo = consumo.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
@@ -40,26 +42,32 @@ export default function Page() {
     const alcoolNum = parseFloat(alcool);
     const gasolinaNum = parseFloat(gasolina);
 
-    if(alcoolNum > 0 && gasolinaNum >0){
+    if (alcoolNum > 0 && gasolinaNum > 0) {
       const calc = (alcoolNum / gasolinaNum);
-      const resultFormatado = parseFloat(calc.toFixed(2));
-      
-      const res = resultFormatado <= 0.70;
-     
-
-      alert(res);
-
+      const res = calc < 0.7;
+      setResultFuel(res);
+      setActive(true);
     }
 
+  }
+
+  const handleResetFuel = () => {
+    setActive(false);
+    setResultFuel(null);
+    setAlcool("");
+    setGasolina("");
   }
 
   const handleInput = (value: string, setter: (val: string) => void) => {
     // Permitir apenas números, ponto ou vírgula
     const regex = /^[0-9]*[.,]?[0-9]*$/;
     if (regex.test(value)) {
-      setter(value);
+      const numberValue = value.replace(',', '.');
+      setter(numberValue);
     }
   };
+
+
 
   const handleReset = () => {
     setShowResult(false);
@@ -74,125 +82,143 @@ export default function Page() {
   return (
     <>
 
-      <Header/>
+      <Header />
 
-    <div className="container mx-auto  flex flex-col items-center text-gray-950 ">
-      <div className="flex justify-start w-full mt-8 px-4">
-        <h1 className="font-medium text-gray-800 text-xl p-8 bg-slate-300 rounded-md">
-        Calcule facilmente o custo do combustível da sua viagem com nossa<br/> calculadora prática e otimizada!
-        </h1>
-      </div>
-    
-      <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md mt-10">
-        <div className=" mt-4 text-xl font-semibold text-gray-800">Calculadora de combustível</div>
-        <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
+      <div className="container mx-auto  flex flex-col items-center text-gray-950 ">
+        <div className="flex justify-start w-full mt-8 px-4">
+          <h1 className="font-medium text-gray-800 text-xl p-8 bg-slate-300 rounded-md shadow-lg">
+            Calcule facilmente o custo do combustível da sua viagem com nossa<br /> calculadora prática e otimizada!
+          </h1>
+        </div>
 
-          <Input
-            disabled={showResult}
-            label="Distância percorrida"
-            id="dist"
-            placeholder="0"
-            value={dist}
-            state={setDist}
-            span="km"
-            onChange={handleInput}
-          />
+        <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md mt-10">
+          <div className=" mt-4 text-xl font-semibold text-gray-800">Calculadora de combustível</div>
+          <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
 
-          <Input
-            disabled={showResult}
-            label="Consumo médio do veículo"
-            id="cons"
-            placeholder="0"
-            value={cons}
-            state={setCons}
-            span="km / ℓ"
-            onChange={handleInput}
-          />
+            <Input
+              disabled={showResult}
+              label="Distância percorrida"
+              id="dist"
+              placeholder="0"
+              value={dist}
+              state={setDist}
+              span="km"
+              onChange={handleInput}
+            />
 
-          <Input
-            disabled={showResult}
-            label="Preço por litro"
-            id="prec"
-            placeholder="0,00"
-            value={prec}
-            state={setPrec}
-            span="por ℓ"
-            onChange={handleInput}
-          />
+            <Input
+              disabled={showResult}
+              label="Consumo médio do veículo"
+              id="cons"
+              placeholder="0"
+              value={cons}
+              state={setCons}
+              span="km / ℓ"
+              onChange={handleInput}
+            />
+
+            <Input
+              disabled={showResult}
+              label="Preço por litro"
+              id="prec"
+              placeholder="0,00"
+              value={prec}
+              state={setPrec}
+              span="por ℓ"
+              onChange={handleInput}
+            />
+
+          </div>
+
+
+          {
+            !showResult && (
+              <div className="flex justify-end mt-8">
+                <div
+                  className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
+                  onClick={handleCalc}
+                >
+                  Calcular
+                </div>
+              </div>
+            )
+          }
+
+          {
+            showResult &&
+            <Result
+              consumo={consumo}
+              dist={dist}
+              resultado={resultado}
+              handleReset={handleReset}
+            />
+          }
 
         </div>
 
+        <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md mt-10">
+          <div className=" mt-4 text-xl font-semibold text-gray-800">Álcool ou Gasolina</div>
+          <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
 
-        {
-          !showResult && (
-            <div className="flex justify-end mt-8">
-              <div
-                className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
-                onClick={handleCalc}
-              >
-                Calcular
+            <Input
+              disabled={active}
+              label="Preço do Álcool"
+              id="alcool"
+              placeholder="0"
+              value={alcool}
+              state={setAlcool}
+              span="AL"
+              onChange={handleInput}
+            />
+
+            <Input
+              disabled={active}
+              label="Preço da Gasolina"
+              id="gasolina"
+              placeholder="0"
+              value={gasolina}
+              state={setGasolina}
+              span="GS"
+              onChange={handleInput}
+            />
+
+
+          </div>
+
+          {
+            !active && (
+              <div className="flex justify-end mt-8">
+                <div
+                  className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
+                  onClick={handleCalcFuel}
+                >
+                  Calcular
+                </div>
               </div>
-            </div>
-          )
-        }
+            )
+          }
 
-        {
-          showResult &&
-          <Result
-            consumo={consumo}
-            dist={dist}
-            resultado={resultado}
-            handleReset={handleReset}
-          />
-        }
+          {
+            active &&
 
-      </div>
-
-      <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md mt-10">
-        <div className=" mt-4 text-xl font-semibold text-gray-800">Álcool ou Gasolina</div>
-        <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
-
-        <Input
-            disabled={active}
-            label="Preço do Álcool"
-            id="alcool"
-            placeholder="0"
-            value={alcool}
-            state={setAlcool}
-            span="AL"
-            onChange={handleInput}
-          />
-
-          <Input
-            disabled={active}
-            label="Preço da Gasolina"
-            id="gasolina"
-            placeholder="0"
-            value={gasolina}
-            state={setGasolina}
-            span="GS"
-            onChange={handleInput}
-          />
-
-
-          </div>       
-
-              {
-          !active && (
-            <div className="flex justify-end mt-8">
-              <div
-                className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
-                onClick={handleCalcFuel}
-              >
-                Calcular
+            <div className="flex flex-col">
+              <div className={`p-4 border mt-4 font-light rounded-md ${resultFuel ? 'bg-blue-200 border-blue-500' : 'bg-orange-200 border-orange-500'}`}>
+                {resultFuel ? 'Vale a pena abastecer com Álcool' : 'Vale a pena abastecer com Gasolina'}
               </div>
-            </div>
-          )
-        }   
-       </div>
 
-          
-         
+              <div
+                className=" bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded-md cursor-pointer mt-8"
+                onClick={handleResetFuel}
+              >
+                Fazer novo cálculo
+              </div>
+
+            </div>
+          }
+        </div>
+
+
+
 
 
 
@@ -200,15 +226,15 @@ export default function Page() {
           <h2 className=" mt-20 text-xl font-semibold mb-4">Planejamento de Combustível: Saiba Quanto Você Vai Gastar e Como Economizar</h2>
 
           <p className="text-base">
-          O planejamento de combustível é essencial para quem deseja otimizar seus gastos e 
-          tornar suas viagens mais econômicas. Com o aumento constante dos preços dos combustíveis,
-           entender quanto você vai gastar e adotar estratégias para economizar se tornou uma necessidade.
+            O planejamento de combustível é essencial para quem deseja otimizar seus gastos e
+            tornar suas viagens mais econômicas. Com o aumento constante dos preços dos combustíveis,
+            entender quanto você vai gastar e adotar estratégias para economizar se tornou uma necessidade.
           </p>
 
           <h2 className=" mt-4 text-xl font-semibold mb-4">Calcule Seus Gastos</h2>
 
           <p>
-          Para saber exatamente quanto você vai gastar em combustível, siga estas etapas simples:
+            Para saber exatamente quanto você vai gastar em combustível, siga estas etapas simples:
           </p>
 
           <ul className="list-decimal mt-4">
@@ -239,17 +265,17 @@ export default function Page() {
           </ul>
 
           <p className="mt-4">Com um bom planejamento e algumas mudanças de hábito, é possível controlar
-            seus gastos com combustível e ainda contribuir para um trânsito mais sustentável. 
+            seus gastos com combustível e ainda contribuir para um trânsito mais sustentável.
             Portanto, faça suas contas, adote as dicas e aproveite suas viagens com mais tranquilidade!</p>
 
 
         </div>
-        
-    </div>
 
-    <footer className="bg-slate-300  w-full text-center p-4 text-gray-800 mt-20">
-          mkweb ©2024 
-    </footer>
+      </div>
+
+      <footer className="bg-slate-300  w-full text-center p-4 text-gray-800 mt-20">
+        mkweb ©2024
+      </footer>
 
     </>
 
