@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Cálculo de combustível",
   description: "Planeje sua viagem com nossa calculadora de combustível. Descubra quanto vai gastar e aprenda dicas eficazes para economizar combustível e otimizar seus gastos!",
   keywords: "calculadora de combustivel, álcool, gasolina, economizar combustível",
+  icons: {
+    icon: "/favicon.ico", 
+  },
 };
 
 export default function RootLayout({

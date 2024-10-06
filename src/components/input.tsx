@@ -16,24 +16,24 @@ type Props = {
 export const Input = ({ placeholder, id, value, disabled, state, label, span, icon, onChange }: Props) => {
   return (
     <div className="w-full lg:w-auto">
-      <label htmlFor={id} className="text-sm block">
+      <label htmlFor={id} className="text-sm block text-white">
         {label}
       </label>
       <div className="flex">
         <input
           type="text"
           id={id}
-          className="rounded-l p-1 w-full lg:w-auto bg-gray-100 border border-gray-500 focus:outline-none focus:border-y-blue-500 focus:border-l-blue-500"
+          className="rounded-l p-1 w-full lg:w-auto bg-gray-100 border border-gray-500 focus:outline-none focus:border-y-blue-700 focus:border-l-blue-700"
           placeholder={placeholder}
           value={value}
           disabled={disabled}
           onChange={e => onChange(e.target.value, state)}
         />
-        <div className="flex-shrink-0 p-2 bg-gray-500 rounded-r flex items-center">
+        <div className="flex-shrink-0 p-2 bg-blue-500 rounded-r flex items-center">
           {icon ? (
-            <FontAwesomeIcon icon={icon} className="text-white" />
+            <FontAwesomeIcon icon={icon}  className="text-white" />
           ) : (
-            <span>{span}</span>
+            <span className="text-white">{span}</span>
           )}
         </div>
       </div>

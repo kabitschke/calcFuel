@@ -4,6 +4,7 @@
 import { Header } from "@/components/header";
 import { Input } from "@/components/input";
 import { Result } from "@/components/result";
+import { faGasPump } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function Page() {
@@ -81,18 +82,50 @@ export default function Page() {
 
   return (
     <>
+        <header>
 
-      <Header />
+            <Header />
+        </header>
 
-      <div className="container mx-auto  flex flex-col items-center text-gray-950 ">
+      <main className="container mx-auto  flex flex-col items-center text-gray-950 ">
         <div className="flex justify-start w-full mt-8 px-4">
-          <h1 className="font-medium text-gray-800 text-xl p-8 bg-slate-300 rounded-md shadow-lg">
+          <h1 className="font-medium text-white italic text-xl p-8 bg-blue-600 rounded-md shadow-lg">
             Calcule facilmente o custo do combustível da sua viagem com nossa<br /> calculadora prática e otimizada!
           </h1>
         </div>
 
-        <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md mt-10">
-          <div className=" mt-4 text-xl font-semibold text-gray-800">Calculadora de combustível</div>
+        <section className="flex flex-col  text-gray-800 max-w-4xl mt-8 p-2">
+
+            <article>
+              <h2 className="mt-4 text-xl font-semibold mb-4 text-blue-600">Como calcular o custo do combustível para uma viagem</h2>
+
+              <p>Você precisa da distância total, do consumo do veículo (em km/l) e do preço do combustível por litro. O cálculo é:</p>
+
+
+
+              <ul className=" mt-4">
+                <li>Distância total (km) ÷ Consumo (km/l) = Litros necessários.</li>
+                <li className="mt-4">Litros necessários × Preço do combustível (R$/l) = Custo total.</li>
+              </ul>
+
+            </article>
+
+              <h2 className=" mt-4 text-xl font-semibold mb-4 text-blue-600">Calcule Seus Gastos</h2>
+
+              <p>
+                Para saber exatamente quanto você vai gastar em combustível, siga estas etapas simples:
+              </p>
+
+              <ul className=" mt-4">
+                <li className="mt-4"><span className="font-semibold text-blue-600">Distância da Viagem:</span>  Determine a distância total que você pretende percorrer.</li>
+                <li className="mt-4"><span className="font-semibold text-blue-600">Consumo do Veículo: </span> Verifique quantos quilômetros seu carro faz por litro de combustível.</li>
+                <li className="mt-4"><span className="font-semibold text-blue-600">Preço do Combustível:</span> Confira o preço atual do combustível em sua região.</li>
+              </ul>
+
+        </section>
+
+        <div className="flex flex-col max-w-4xl bg-blue-400 h-auto p-4 rounded-md mt-10 shadow-lg border border-blue-600">
+          <div className=" mt-4 text-xl font-semibold text-white">Calculadora de combustível</div>
           <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
 
             <Input
@@ -133,9 +166,9 @@ export default function Page() {
 
           {
             !showResult && (
-              <div className="flex justify-end mt-8">
+              <div className="flex justify-end mt-8 text-white">
                 <div
-                  className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
+                  className=" bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md cursor-pointer"
                   onClick={handleCalc}
                 >
                   Calcular
@@ -156,18 +189,48 @@ export default function Page() {
 
         </div>
 
-        <div className="flex flex-col max-w-4xl bg-gray-400 h-auto p-4 rounded-md mt-10">
-          <div className=" mt-4 text-xl font-semibold text-gray-800">Álcool ou Gasolina</div>
+        <section className="flex flex-col  text-gray-800 max-w-4xl mt-8 p-2">
+
+        <h2 className=" mt-4 text-xl font-semibold mb-4 text-blue-600">Álcool ou Gasolina Descubra a Melhor Opção</h2>
+
+        <p>
+        Bem-vindo à nossa calculadora de combustíveis! Sabemos que escolher entre abastecer com álcool ou gasolina pode ser um desafio, 
+        especialmente com as constantes variações de preços. Nossa ferramenta foi 
+        desenvolvida para ajudar você a tomar decisões mais informadas e econômicas.
+        </p>
+
+        <p>
+        Com apenas alguns dados, nossa calculadora analisa a relação entre o preço do álcool e da gasolina,
+         oferecendo uma recomendação clara sobre qual combustível oferece o melhor custo-benefício para o seu carro.
+        </p>
+
+        <h2>Como Funciona?</h2>
+
+        <ul className=" mt-4">
+          <li className="mt-4"><span className="font-semibold text-blue-600">Insira os Preços:</span> Digite o preço do litro do álcool e o preço do litro da gasolina.</li>
+          <li className="mt-4"><span className="font-semibold text-blue-600">Calcule:</span> A calculadora fará o trabalho pesado, comparando os valores.</li>
+          <li className="mt-4"><span className="font-semibold text-blue-600">Receba a Recomendação:</span> Descubra rapidamente qual combustível é a escolha mais vantajosa para o seu bolso.</li>
+        </ul>
+
+        <p>
+        Lembre-se: a relação ideal para abastecer com álcool é quando o preço do litro é menor que 70% 
+        do preço da gasolina. Utilize nossa ferramenta sempre que for abastecer e aproveite para economizar em cada tanque cheio!
+        </p>
+
+        </section>
+
+        <div className="flex flex-col max-w-4xl bg-blue-400 h-auto p-4 rounded-md mt-10 shadow-lg border border-blue-600">
+          <div className=" mt-4 text-xl font-semibold text-white">Álcool ou Gasolina</div>
           <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
 
             <Input
               disabled={active}
               label="Preço do Álcool"
               id="alcool"
-              placeholder="0"
+              placeholder="4,20"
               value={alcool}
               state={setAlcool}
-              span="AL"
+              icon={faGasPump}
               onChange={handleInput}
             />
 
@@ -175,10 +238,10 @@ export default function Page() {
               disabled={active}
               label="Preço da Gasolina"
               id="gasolina"
-              placeholder="0"
+              placeholder="5,98"
               value={gasolina}
               state={setGasolina}
-              span="GS"
+              icon={faGasPump}
               onChange={handleInput}
             />
 
@@ -187,9 +250,9 @@ export default function Page() {
 
           {
             !active && (
-              <div className="flex justify-end mt-8">
+              <div className="flex justify-end mt-8 text-white">
                 <div
-                  className=" bg-gray-500 hover:bg-slate-600 px-4 py-2 rounded-md cursor-pointer"
+                  className=" bg-blue-500 hover:bg-blue-600  py-2 px-4 rounded-md cursor-pointer"
                   onClick={handleCalcFuel}
                 >
                   Calcular
@@ -206,12 +269,17 @@ export default function Page() {
                 {resultFuel ? 'Vale a pena abastecer com Álcool' : 'Vale a pena abastecer com Gasolina'}
               </div>
 
-              <div
-                className=" bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded-md cursor-pointer mt-8"
-                onClick={handleResetFuel}
-              >
-                Fazer novo cálculo
+              <div className="flex justify-end">
+                <div
+                  className=" bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer mt-8 "
+                  onClick={handleResetFuel}
+                >
+                  Fazer novo cálculo
+                </div>
+
               </div>
+
+          
 
             </div>
           }
@@ -222,46 +290,26 @@ export default function Page() {
 
 
 
-        <div className="flex flex-col  text-gray-800 max-w-4xl">
-          <h2 className=" mt-20 text-xl font-semibold mb-4">Planejamento de Combustível: Saiba Quanto Você Vai Gastar e Como Economizar</h2>
+        <section className="flex flex-col  text-gray-800 max-w-4xl p-2">
+          <h2 className=" mt-20 text-xl font-semibold mb-4 text-blue-600">Planejamento de Combustível: Saiba Quanto Você Vai Gastar e Como Economizar</h2>
 
           <p className="text-base">
             O planejamento de combustível é essencial para quem deseja otimizar seus gastos e
             tornar suas viagens mais econômicas. Com o aumento constante dos preços dos combustíveis,
             entender quanto você vai gastar e adotar estratégias para economizar se tornou uma necessidade.
-          </p>
+          </p>     
 
-          <h2 className=" mt-4 text-xl font-semibold mb-4">Calcule Seus Gastos</h2>
+         
 
-          <p>
-            Para saber exatamente quanto você vai gastar em combustível, siga estas etapas simples:
-          </p>
+          <h2 className="mt-4 text-xl font-semibold mb-4 text-blue-600">Dicas para Economizar Combustível</h2>
 
-          <ul className="list-decimal mt-4">
-            <li><span className="font-semibold">Distância da Viagem:</span>  Determine a distância total que você pretende percorrer.</li>
-            <li><span className="font-semibold">Consumo do Veículo: </span> Verifique quantos quilômetros seu carro faz por litro de combustível.</li>
-            <li><span className="font-semibold">Preço do Combustível:</span> Confira o preço atual do combustível em sua região.</li>
-          </ul>
-
-          <h2 className=" mt-4 text-xl font-semibold mb-4">Como calcular o custo do combustível para uma viagem</h2>
-
-          <p>você precisa da distância total, do consumo do veículo (em km/l) e do preço do combustível por litro. O cálculo é:</p>
-
-
-          <ul className="list-decimal mt-4">
-            <li>Distância total (km) ÷ Consumo (km/l) = Litros necessários.</li>
-            <li>Litros necessários × Preço do combustível (R$/l) = Custo total.</li>
-          </ul>
-
-          <h2 className="mt-4 text-xl font-semibold mb-4">Dicas para Economizar Combustível</h2>
-
-          <ul className="list-decimal mt-4">
-            <li className=""><span className="font-semibold">Mantenha o Veículo em Dia:</span> Realize manutenções regulares, como troca de óleo e verificação de pneus. Um veículo bem cuidado consome menos combustível.</li>
-            <li className="mt-4"><span className="font-semibold">Dirija de Forma Eficiente:</span> Evite acelerações bruscas e mantenha uma velocidade constante. Isso reduz o consumo e aumenta a eficiência do combustível.</li>
-            <li className="mt-4"><span className="font-semibold">Planeje suas Rotas:</span> Utilize aplicativos de navegação que ajudem a evitar congestionamentos e busquem as rotas mais curtas.</li>
-            <li className="mt-4"><span className="font-semibold">Reduza o Peso:</span> Remova itens desnecessários do carro. Quanto mais leve o veículo, menor será o consumo de combustível.</li>
-            <li className="mt-4"><span className="font-semibold">Evite o Ar Condicionado:</span> O uso do ar condicionado pode aumentar o consumo de combustível. Sempre que possível, utilize a ventilação natural.</li>
-            <li className="mt-4"><span className="font-semibold">Carona e Compartilhamento: </span> Considere dividir a viagem com outras pessoas. Além de economizar, você reduz a quantidade de carros nas ruas.</li>
+          <ul className="mt-4">
+            <li className=""><span className="font-semibold text-blue-600">Mantenha o Veículo em Dia:</span> Realize manutenções regulares, como troca de óleo e verificação de pneus. Um veículo bem cuidado consome menos combustível.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Dirija de Forma Eficiente:</span> Evite acelerações bruscas e mantenha uma velocidade constante. Isso reduz o consumo e aumenta a eficiência do combustível.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Planeje suas Rotas:</span> Utilize aplicativos de navegação que ajudem a evitar congestionamentos e busquem as rotas mais curtas.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Reduza o Peso:</span> Remova itens desnecessários do carro. Quanto mais leve o veículo, menor será o consumo de combustível.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Evite o Ar Condicionado:</span> O uso do ar condicionado pode aumentar o consumo de combustível. Sempre que possível, utilize a ventilação natural.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Carona e Compartilhamento: </span> Considere dividir a viagem com outras pessoas. Além de economizar, você reduz a quantidade de carros nas ruas.</li>
           </ul>
 
           <p className="mt-4">Com um bom planejamento e algumas mudanças de hábito, é possível controlar
@@ -269,11 +317,11 @@ export default function Page() {
             Portanto, faça suas contas, adote as dicas e aproveite suas viagens com mais tranquilidade!</p>
 
 
-        </div>
+        </section>
 
-      </div>
+      </main>
 
-      <footer className="bg-slate-300  w-full text-center p-4 text-gray-800 mt-20">
+      <footer className="bg-blue-600  w-full text-center p-4 text-white mt-20">
         mkweb ©2024
       </footer>
 
