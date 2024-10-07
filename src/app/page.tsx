@@ -82,10 +82,10 @@ export default function Page() {
 
   return (
     <>
-        <header>
+      <header>
 
-            <Header />
-        </header>
+        <Header />
+      </header>
 
       <main className="container mx-auto  flex flex-col items-center text-gray-950 ">
         <div className="flex justify-start w-full mt-8 px-4">
@@ -96,31 +96,31 @@ export default function Page() {
 
         <section className="flex flex-col  text-gray-800 max-w-4xl mt-8 p-2">
 
-            <article>
-              <h2 className="mt-4 text-xl font-semibold mb-4 text-blue-600">Como calcular o custo do combustível para uma viagem</h2>
+          <article>
+            <h2 className="mt-4 text-xl font-semibold mb-4 text-blue-600">Como calcular o custo do combustível para uma viagem</h2>
 
-              <p>Você precisa da distância total, do consumo do veículo (em km/l) e do preço do combustível por litro. O cálculo é:</p>
+            <p>Você precisa da distância total, do consumo do veículo (em km/l) e do preço do combustível por litro. O cálculo é:</p>
 
 
 
-              <ul className=" mt-4">
-                <li>Distância total (km) ÷ Consumo (km/l) = Litros necessários.</li>
-                <li className="mt-4">Litros necessários × Preço do combustível (R$/l) = Custo total.</li>
-              </ul>
+            <ul className=" mt-4">
+              <li>Distância total (km) ÷ Consumo (km/l) = Litros necessários.</li>
+              <li className="mt-4">Litros necessários × Preço do combustível (R$/l) = Custo total.</li>
+            </ul>
 
-            </article>
+          </article>
 
-              <h2 className=" mt-4 text-xl font-semibold mb-4 text-blue-600">Calcule Seus Gastos</h2>
+          <h2 className=" mt-4 text-xl font-semibold mb-4 text-blue-600">Calcule Seus Gastos</h2>
 
-              <p>
-                Para saber exatamente quanto você vai gastar em combustível, siga estas etapas simples:
-              </p>
+          <p>
+            Para saber exatamente quanto você vai gastar em combustível, siga estas etapas simples:
+          </p>
 
-              <ul className=" mt-4">
-                <li className="mt-4"><span className="font-semibold text-blue-600">Distância da Viagem:</span>  Determine a distância total que você pretende percorrer.</li>
-                <li className="mt-4"><span className="font-semibold text-blue-600">Consumo do Veículo: </span> Verifique quantos quilômetros seu carro faz por litro de combustível.</li>
-                <li className="mt-4"><span className="font-semibold text-blue-600">Preço do Combustível:</span> Confira o preço atual do combustível em sua região.</li>
-              </ul>
+          <ul className=" mt-4">
+            <li className="mt-4"><span className="font-semibold text-blue-600">Distância da Viagem:</span>  Determine a distância total que você pretende percorrer.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Consumo do Veículo: </span> Verifique quantos quilômetros seu carro faz por litro de combustível.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Preço do Combustível:</span> Confira o preço atual do combustível em sua região.</li>
+          </ul>
 
         </section>
 
@@ -191,31 +191,31 @@ export default function Page() {
 
         <section className="flex flex-col  text-gray-800 max-w-4xl mt-8 p-2">
 
-        <h2 className=" mt-4 text-xl font-semibold mb-4 text-blue-600">Álcool ou Gasolina Descubra a Melhor Opção</h2>
+          <h2 className=" mt-4 text-xl font-semibold mb-4 text-blue-600">Álcool ou Gasolina Descubra a Melhor Opção</h2>
 
-        <p>
-        Bem-vindo à nossa calculadora de combustíveis! Sabemos que escolher entre abastecer com álcool ou gasolina pode ser um desafio, 
-        especialmente com as constantes variações de preços. Nossa ferramenta foi 
-        desenvolvida para ajudar você a tomar decisões mais informadas e econômicas.
-        </p>
+          <p>
+            Bem-vindo à nossa calculadora de combustíveis! Sabemos que escolher entre abastecer com álcool ou gasolina pode ser um desafio,
+            especialmente com as constantes variações de preços. Nossa ferramenta foi
+            desenvolvida para ajudar você a tomar decisões mais informadas e econômicas.
+          </p>
 
-        <p>
-        Com apenas alguns dados, nossa calculadora analisa a relação entre o preço do álcool e da gasolina,
-         oferecendo uma recomendação clara sobre qual combustível oferece o melhor custo-benefício para o seu carro.
-        </p>
+          <p>
+            Com apenas alguns dados, nossa calculadora analisa a relação entre o preço do álcool e da gasolina,
+            oferecendo uma recomendação clara sobre qual combustível oferece o melhor custo-benefício para o seu carro.
+          </p>
 
-        <h2>Como Funciona?</h2>
+          <h2>Como Funciona?</h2>
 
-        <ul className=" mt-4">
-          <li className="mt-4"><span className="font-semibold text-blue-600">Insira os Preços:</span> Digite o preço do litro do álcool e o preço do litro da gasolina.</li>
-          <li className="mt-4"><span className="font-semibold text-blue-600">Calcule:</span> A calculadora fará o trabalho pesado, comparando os valores.</li>
-          <li className="mt-4"><span className="font-semibold text-blue-600">Receba a Recomendação:</span> Descubra rapidamente qual combustível é a escolha mais vantajosa para o seu bolso.</li>
-        </ul>
+          <ul className=" mt-4">
+            <li className="mt-4"><span className="font-semibold text-blue-600">Insira os Preços:</span> Digite o preço do litro do álcool e o preço do litro da gasolina.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Calcule:</span> A calculadora fará o trabalho pesado, comparando os valores.</li>
+            <li className="mt-4"><span className="font-semibold text-blue-600">Receba a Recomendação:</span> Descubra rapidamente qual combustível é a escolha mais vantajosa para o seu bolso.</li>
+          </ul>
 
-        <p>
-        Lembre-se: a relação ideal para abastecer com álcool é quando o preço do litro é menor que 70% 
-        do preço da gasolina. Utilize nossa ferramenta sempre que for abastecer e aproveite para economizar em cada tanque cheio!
-        </p>
+          <p>
+            Lembre-se: a relação ideal para abastecer com álcool é quando o preço do litro é menor que 70%
+            do preço da gasolina. Utilize nossa ferramenta sempre que for abastecer e aproveite para economizar em cada tanque cheio!
+          </p>
 
         </section>
 
@@ -279,7 +279,7 @@ export default function Page() {
 
               </div>
 
-          
+
 
             </div>
           }
@@ -291,15 +291,42 @@ export default function Page() {
 
 
         <section className="flex flex-col  text-gray-800 max-w-4xl p-2">
-          <h2 className=" mt-20 text-xl font-semibold mb-4 text-blue-600">Planejamento de Combustível: Saiba Quanto Você Vai Gastar e Como Economizar</h2>
+
+          <h2 className=" mt-20 text-xl font-semibold mb-4 text-blue-600">Gasolina vs. Álcool:</h2>
+
+          <p className="text-base mb-4">
+            A escolha entre gasolina e álcool como combustível para veículos é uma decisão importante para muitos motoristas. Embora a gasolina geralmente ofereça uma quilometragem superior em comparação ao álcool, o preço desempenha um papel crucial na viabilidade econômica de cada opção.
+          </p>
+
+          <p className="text-base mb-4">
+            Em termos de desempenho, a gasolina tende a proporcionar uma autonomia maior. No entanto, o álcool, especialmente o etanol, tem se mostrado uma alternativa interessante, principalmente quando se considera o custo. Se o preço do álcool estiver abaixo de 70% do preço da gasolina, ele se torna uma opção financeiramente vantajosa.
+          </p>
+
+          <p className="text-base mb-4">
+            Por exemplo, <span className="bg-blue-200 font-semibold">se a gasolina custa R$ 5,00 por litro, o álcool precisaria estar abaixo de R$ 3,50 para ser considerado mais econômico.</span>  Essa diferença de preço pode compensar a menor quilometragem, tornando o abastecimento com álcool uma escolha inteligente. Além disso, o etanol é uma fonte de energia renovável, o que contribui para a sustentabilidade ambiental.
+
+          </p>
+
+          <p className="text-base mb-4">
+            Portanto, ao decidir entre gasolina e álcool, é essencial considerar não apenas a eficiência em quilometragem, mas também o preço por litro. Quando o etanol está em um patamar favorável, ele pode oferecer uma solução econômica e ecologicamente correta para os motoristas.
+          </p>
+
+
+
+
+
+
+
+
+          <h2 className=" mt-14 text-xl font-semibold mb-4 text-blue-600">Planejamento de Combustível: Saiba Quanto Você Vai Gastar e Como Economizar</h2>
 
           <p className="text-base">
             O planejamento de combustível é essencial para quem deseja otimizar seus gastos e
             tornar suas viagens mais econômicas. Com o aumento constante dos preços dos combustíveis,
             entender quanto você vai gastar e adotar estratégias para economizar se tornou uma necessidade.
-          </p>     
+          </p>
 
-         
+
 
           <h2 className="mt-4 text-xl font-semibold mb-4 text-blue-600">Dicas para Economizar Combustível</h2>
 
