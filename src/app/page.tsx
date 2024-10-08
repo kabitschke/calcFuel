@@ -1,11 +1,11 @@
 "use client";
-
-
 import { Header } from "@/components/header";
 import { Input } from "@/components/input";
 import { Result } from "@/components/result";
-import { faGasPump } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { faArrowAltCircleUp, faGasPump } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const [dist, setDist] = useState("");
@@ -14,6 +14,7 @@ export default function Page() {
   const [consumo, setConsumo] = useState("");
   const [resultado, setResultado] = useState("");
   const [showResult, setShowResult] = useState(false);
+  const [showBtn, setShowBtn] = useState(false);
 
   const [alcool, setAlcool] = useState("");
   const [gasolina, setGasolina] = useState("");
@@ -79,20 +80,52 @@ export default function Page() {
   };
 
 
+    useEffect(() => {
+      const scrollFunction = () => {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          setShowBtn(true);
+        } else {
+          setShowBtn(false);
+        }
+      };
+  
+      window.addEventListener('scroll', scrollFunction);
+      return () => window.removeEventListener('scroll', scrollFunction);
+    }, []);    
 
-  return (
+const topFunction = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+  });
+}
+
+return (
     <>
       <header>
 
         <Header />
       </header>
 
-      <main className="container mx-auto  flex flex-col items-center text-gray-950 ">
+      <main className="container mx-auto  flex flex-col items-center text-gray-950 " id="home">
         <div className="flex justify-start w-full mt-8 px-4">
           <h1 className="font-medium text-white italic text-xl p-8 bg-blue-600 rounded-md shadow-lg">
             Calcule facilmente o custo do combustível da sua viagem com nossa<br /> calculadora prática e otimizada!
           </h1>
         </div>
+
+     { showBtn &&
+
+          <div className="w-10 h-10 bg-blue-600 rounded-full text-white flex justify-center items-center cursor-pointer shadow-sm shadow-gray-600 fixed right-4 bottom-10"
+          onClick={topFunction}>
+              <FontAwesomeIcon icon={faArrowUp} className="animate-bounce"/>
+          </div>
+
+     }
+
+        
+
+     
 
         <section className="flex flex-col  text-gray-800 max-w-4xl mt-8 p-2">
 
@@ -124,7 +157,7 @@ export default function Page() {
 
         </section>
 
-        <div className="flex flex-col max-w-4xl bg-blue-400 h-auto p-4 rounded-md mt-10 shadow-lg border border-blue-600">
+        <div className="flex flex-col max-w-4xl bg-blue-400 h-auto p-4 rounded-md mt-10 shadow-lg border border-blue-600" id="calc1">
           <div className=" mt-4 text-xl font-semibold text-white">Calculadora de combustível</div>
           <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
 
@@ -219,7 +252,7 @@ export default function Page() {
 
         </section>
 
-        <div className="flex flex-col max-w-4xl bg-blue-400 h-auto p-4 rounded-md mt-10 shadow-lg border border-blue-600">
+        <div className="flex flex-col max-w-4xl bg-blue-400 h-auto p-4 rounded-md mt-10 shadow-lg border border-blue-600" id="calc2">
           <div className=" mt-4 text-xl font-semibold text-white">Álcool ou Gasolina</div>
           <div className="flex flex-col lg:flex-row lg:justify-between mt-5 space-y-4 lg:space-y-0 lg:space-x-4">
 
